@@ -1,2 +1,2 @@
-env = "#{env}#"
-admin_password="#{admin-password}#"
+env = "testrg01"
+admin_password="Password!1234"

@@ -1,7 +1,11 @@
+resource azurerm_resource_group "rg" {
+  name = var.rg
+  location = "westeurope"
+}
 resource "azurerm_network_interface" "compute" {
   name                = "${var.vm-name}-nic"
   location            = var.location
-  resource_group_name = var.rg
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "internal"
@@ -13,13 +17,13 @@ resource "azurerm_network_interface" "compute" {
 resource "azurerm_network_security_group" "compute" {
   name                = "${var.vm-name}-nsg"
   location            = var.location
-  resource_group_name = var.rg
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 resource "azurerm_virtual_machine" "compute" {
   name                  = "${var.vm-name}-vm01"
   location            = var.location
-  resource_group_name = var.rg
+  resource_group_name = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.compute.id]
   vm_size               = "Standard_B2s"
 
