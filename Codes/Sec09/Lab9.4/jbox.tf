@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "jbox-rg" {
 
 module "jbox-vm" {
   source = "../../modules/compute"
-  vm-name = "${var.env}-Jbox"
+  vm-name = "${var.env}-1"
   subnet_id = module.fe-vnet.vnet_subnets[1]
   location = azurerm_resource_group.jbox-rg.location
   rg = azurerm_resource_group.jbox-rg.name

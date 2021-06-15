@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "be-rg" {
 
 module "web-vm" {
   source = "../../modules/compute"
-  vm-name = "${var.env}-Web"
+  vm-name = "${var.env}-2"
   subnet_id = module.be-vnet.vnet_subnets[0]
   location = azurerm_resource_group.be-rg.location
   rg = azurerm_resource_group.be-rg.name
